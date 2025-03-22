@@ -18,3 +18,8 @@ class SendMessageRequest(BaseModel):
 class ScanMessagesRequest(BaseModel):
     username: str
     password: str
+
+class SaveFriendRequest(BaseModel):
+    username: str
+    password: str
+    friend_username: str
