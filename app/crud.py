@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from passlib.hash import bcrypt
-from .database import users_collection, messages_collection
+from .database import users_collection, messages_collection, friends_collection 
 from typing import List
 
 # --- USER CRUD OPERATIONS --- #
