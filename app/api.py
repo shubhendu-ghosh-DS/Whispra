@@ -63,3 +63,18 @@ def scan_messages(request: ScanMessagesRequest):
     messages = get_and_delete_messages(request.username)
 
     return {"messages": messages}
+
+
+@router.post("/save_friends")
+def save_friends_username(request: SaveFriendRequest):
+    user = verify_user_credentials(request.username, request.password)
+
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    if not user.get("active", False):
+        raise HTTPException(status_code=403, detail="User is not active. Cannot save friend username.")
+    
+    save_friend_username(request.username, request.friend_username)
+
+    return {"message": "friend username saved successfully"}
