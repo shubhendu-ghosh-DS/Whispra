@@ -5,7 +5,8 @@ from .crud import (
     create_user,
     verify_user_credentials,
     send_message,
-    get_and_delete_messages
+    get_and_delete_messages,
+    save_friend_username
 )
 
 router = APIRouter()
