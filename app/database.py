@@ -6,3 +6,4 @@ db = client["messaging_app"]
 
 users_collection = db["users"]
 messages_collection = db["messages"]
+friends_collection = db["friends"]
