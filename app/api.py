@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+from typing import List
 from .models import SignupRequest, LoginRequest, SendMessageRequest, ScanMessagesRequest
 from .crud import (
     get_user_by_username,
