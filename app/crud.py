@@ -51,7 +51,6 @@ def get_and_delete_messages(username: str):
 
 
 def save_friend_username(username: str, friend_username: str):
-    friends_cursor = friends_collection.find({"username": username})
     friend = get_user_by_username(username)
 
     if not friend:
@@ -62,7 +61,7 @@ def save_friend_username(username: str, friend_username: str):
         "friend": friend_username
     }
 
-    friends_cursor.insert_one(message_data)
+    friends_collection.insert_one(message_data)
 
     return friends_data
 
