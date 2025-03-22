@@ -47,3 +47,34 @@ def get_and_delete_messages(username: str):
     ]
     messages_collection.delete_many({"to_username": username})
     return messages
+
+
+def save_friend_username(username: str, friend_username: str):
+    friends_cursor = friends_collection.find({"username": username})
+    friend = get_user_by_username(to_username)
+
+    if not friend:
+        raise HTTPException(status_code=404, detail="Friend user not found.")
+
+    friends_data = {
+        "username": username,
+        "friend": friend_username
+    }
+
+    friends_cursor.insert_one(message_data)
+
+    return friends_data
+
+
+def get_all_friends(username: str) -> List[str]:
+    # Find all documents where the user has friends
+    friends_cursor = friends_collection.find({"username": username})
+    
+    # Convert the cursor to a list of friend usernames
+    friends_list = [friend_doc["friend"] for friend_doc in friends_cursor]
+    
+    # Check if the user has any friends
+    if not friends_list:
+        raise HTTPException(status_code=404, detail=f"No friends found for user '{username}'.")
+    
+    return friends_list
