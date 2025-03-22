@@ -52,7 +52,7 @@ def get_and_delete_messages(username: str):
 
 def save_friend_username(username: str, friend_username: str):
     friends_cursor = friends_collection.find({"username": username})
-    friend = get_user_by_username(to_username)
+    friend = get_user_by_username(username)
 
     if not friend:
         raise HTTPException(status_code=404, detail="Friend user not found.")
