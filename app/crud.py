@@ -61,7 +61,7 @@ def save_friend_username(username: str, friend_username: str):
         "friend": friend_username
     }
 
-    friends_collection.insert_one(message_data)
+    friends_collection.insert_one(friends_data)
 
     return friends_data
 
