@@ -6,7 +6,8 @@ from .crud import (
     verify_user_credentials,
     send_message,
     get_and_delete_messages,
-    save_friend_username
+    save_friend_username,
+    get_all_friends
 )
 
 router = APIRouter()
@@ -81,3 +82,18 @@ def save_friends_username(request: SaveFriendRequest):
     return {"message": "friend username saved successfully"}
 
 
+@router.get("/get_friends", response_model=List[str])
+def get_friends(username: str, password: str):
+    # Verify the user credentials
+    user = verify_user_credentials(username, password)
+
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    if not user.get("active", False):
+        raise HTTPException(status_code=403, detail="User is not active. Cannot retrieve friends.")
+    
+    # Get all friends for the user
+    friends_list = get_all_friends(username)
+
+    return friends_list
