@@ -85,7 +85,6 @@ def save_friends_username(request: SaveFriendRequest):
 
 @router.get("/get_friends", response_model=List[str])
 def get_friends(username: str, password: str):
-    # Verify the user credentials
     user = verify_user_credentials(username, password)
 
     if not user:
@@ -94,7 +93,6 @@ def get_friends(username: str, password: str):
     if not user.get("active", False):
         raise HTTPException(status_code=403, detail="User is not active. Cannot retrieve friends.")
     
-    # Get all friends for the user
     friends_list = get_all_friends(username)
 
     return friends_list
