@@ -54,9 +54,8 @@ def get_and_delete_messages(username: str):
 
 
 def save_friend_username(username: str, friend_username: str):
-    friend = get_user_by_username(username)
+    friend = get_user_by_username(friend_username)
 
-    print("I got this data ", friend)
 
     if not friend:
         raise HTTPException(status_code=404, detail="Friend user not found.")
