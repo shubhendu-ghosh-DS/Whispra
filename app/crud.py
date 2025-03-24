@@ -1,15 +1,14 @@
 from fastapi import HTTPException
 from passlib.hash import bcrypt
 from .database import users_collection, messages_collection, friends_collection
-from typing import Optional, Dict
+from typing import List
 
-def get_user_by_username(username: str) -> Optional[Dict]:
+def get_user_by_username(username: str):
     user = users_collection.find_one({"username": username})
 
     if not user:
         raise HTTPException(status_code=404, detail=f"User '{username}' not found")
 
-    # Optional: If you want to exclude sensitive fields like 'password'
     user.pop('password', None)
 
     return user
