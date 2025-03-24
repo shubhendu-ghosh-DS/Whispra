@@ -35,7 +35,7 @@ def login(request: LoginRequest):
         return {"success": False, "detail": "Invalid username or password"}
     
     if not user.get("active", False):
-        return {"success": False, "detail": "User is not active. Please contact admin."}
+        return {"success": False, "detail": "Your account not active yet. Please contact admin on whatsapp (+917586850063) for a quicker response."}
 
     return {"success": True, "detail": "Login successful"}
 
@@ -61,7 +61,7 @@ def scan_messages(request: ScanMessagesRequest):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     
     if not user.get("active", False):
-        raise HTTPException(status_code=403, detail="User is not active. Cannot scan messages.")
+        raise HTTPException(status_code=403, detail="Your account not active yet. Cannot scan messages.")
     
     messages = get_and_delete_messages(request.username)
 
