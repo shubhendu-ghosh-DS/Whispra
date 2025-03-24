@@ -9,7 +9,6 @@ def get_user_by_username(username: str):
     if not user:
         raise HTTPException(status_code=404, detail=f"User '{username}' not found")
 
-    user.pop('password', None)
 
     return user
 
