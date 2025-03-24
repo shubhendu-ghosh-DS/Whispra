@@ -1,6 +1,7 @@
 from fastapi import HTTPException
 from passlib.hash import bcrypt
 from .database import users_collection, messages_collection, friends_collection
+from datetime import datetime
 from typing import List
 
 def get_user_by_username(username: str):
@@ -38,7 +39,8 @@ def send_message(from_username: str, to_username: str, message: str):
     message_data = {
         "from_username": from_username,
         "to_username": to_username,
-        "message": message
+        "message": message,
+        "timestamp": datetime.utcnow().isoformat()
     }
     messages_collection.insert_one(message_data)
     return message_data
