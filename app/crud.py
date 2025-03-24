@@ -48,7 +48,7 @@ def send_message(from_username: str, to_username: str, message: str):
 def get_and_delete_messages(username: str):
     messages_cursor = messages_collection.find({"to_username": username})
     messages = [
-        {"from_username": msg["from_username"], "message": msg["message"], "timestamp": msg["timestamp"]"}
+        {"from_username": msg["from_username"], "message": msg["message"], "timestamp": msg["timestamp"]}
         for msg in messages_cursor
     ]
     messages_collection.delete_many({"to_username": username})
