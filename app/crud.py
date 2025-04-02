@@ -19,7 +19,7 @@ def create_user(username: str, email: str, password: str):
         "username": username,
         "email": email,
         "password": hashed_password,
-        "active": False
+        "active": True
     }
     users_collection.insert_one(user_data)
     return user_data
