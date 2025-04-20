@@ -104,8 +104,8 @@ Access the live API here:
 ### Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/whispra.git
-cd whispra
+git clone https://huggingface.co/spaces/shubhendu-ghosh/Whispra
+cd Whispra
 ```
 
 ### Run Locally (Without Docker)
